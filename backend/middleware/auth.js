@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
  
 // Middleware d'authentification
 module.exports = (req, res, next) => {
+   
    try {
         // Extraction du token du header Authorization de la requête
         const token = req.headers.authorization.split(' ')[1];
@@ -12,6 +13,7 @@ module.exports = (req, res, next) => {
         req.auth = {
             userId: userId
         };
+        console.log('userId:', req.auth);
 	next();
    } catch(error) {
         res.status(401).json({ error });
